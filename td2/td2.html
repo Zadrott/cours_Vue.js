@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ message }}</p>
+            <div v-if="display">
+                <input v-model="search" type="text" name="Rechercher" placeholder="Rechercher">
+                <p>Nombre de films trouvés: {{movies.length}}</p> <!-- modifier par nb component -->
+                <ul>
+                    <li v-if="isSearched(movie.title, movie.year, movie.real)" v-for="movie in movies" v-bind:title="movie.title" class="movie">
+                        {{ movie.title }} ({{ movie.real }}, {{ movie.year }})
+                    </li>
+                </ul>
+               
+            </div>
+            <button v-on:click="toggleDisplay">Afficher/Cacher</button>
+
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="td2.js"></script>
+    </body>
+</html>
