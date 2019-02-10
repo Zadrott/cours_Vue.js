@@ -9,12 +9,13 @@ Vue.use(VueRouter);
 Vue.component("movie-item", MovieItemComponent);
 
 window.shared_data = {
-  movies: "Test",
+  movies: [] //get node list
 };
 
 const routes = [
   { path: "/", component: Home },
   { path: "/edit/:id", component: Editor },
+  { path: "/movie/:id", component: MovieItemComponent },
 ];
 
 const router = new VueRouter({

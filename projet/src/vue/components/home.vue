@@ -3,17 +3,28 @@
     <h1 id="msg">{{message}}</h1>
     <div class="box">
       <div id="newMovie">
-        <h2>Add New Movie:</h2>
+        <h2>Ajouter un nouveau film</h2>
         <p>
-          Your movie
-          <br>Title :
+          <h3>Votre film :</h3>
+          <br>Titre :
           <input type="text" v-model="movie_to_add.title">
-          <br>Year :
-          <input type="text" v-model="movie_to_add.year">
+          <br>Année de sortie :
+          <input type="number" v-model="movie_to_add.year">
+          <br>Langue:
+          <input type="text" v-model="movie_to_add.language">
+          <br>Réalisateur :
+          <br>* Prénom nom:
+          <input type="text" v-model="movie_to_add.real.name">
+          <br>* Nationalité:
+          <input type="text" v-model="movie_to_add.real.nationality">
+          <br>* Date de naissance:
+          <input type="date" v-model="movie_to_add.real.born">
+          <br>Genre :
+          <input type="text" v-model="movie_to_add.genre">
           <br>Synopsys :
           <textarea v-model="movie_to_add.synopsys"></textarea>
           <br>
-          <button v-on:click="newmovie2">Add</button>
+          <button v-on:click="newmovie">Add</button>
         </p>
       </div>
     </div>
@@ -21,13 +32,13 @@
     <div class="box">
       <div id="searchMovie">
         <p>
-          Movie number : {{movies.length}}
-          <br>Search :
+          Films trouvés : {{movies_search.length}}
+          <br>Rechercher :
           <input type="text" v-model="search">
         </p>
       </div>
       <div id="list">
-        <h2>List:</h2>
+        <h2>Liste:</h2>
         <ul>
           <movie-item
             v-for="(movie, index) in movies_search"
@@ -39,18 +50,6 @@
         </ul>
       </div>
     </div>
-
-    <!-- <p v-if="movie_to_edit">
-      New movie
-      <br>Title :
-      <input type="text" v-model="movie_to_edit.title">
-      <br>Year :
-      <input type="text" v-model="movie_to_edit.year">
-      <br>Synopsys :
-      <textarea v-model="movie_to_edit.synopsys"></textarea>
-      <br>
-      <button v-on:click="save">Save</button>
-    </p>-->
   </div>
 </template>
 
@@ -59,42 +58,81 @@ export default {
   data() {
     return {
       message: "Welcome to this amazing movie list",
-      movie_to_add: {},
-      movie_to_edit: null,
+      movie_to_add: {
+          title: "New movie",
+          year: "?",
+          language:"?",
+          synopsys: "Non disponible",
+          real: {
+            name: "?",
+            nationality: "?",
+            born: "?",
+          },
+          genre:"?",
+      },
       search: "",
-      movies: [
+      movies: //replace with window.shared_data.movies
+       [
         {
           title: "L'étrange noël de M. Jack",
           year: 1994,
+          language: "Anglais",
           synopsys:
             "Jack Skellington, un épouvantail squelettique surnommé « le Roi des citrouilles » (Pumpkin King en version originale), vit dans la ville d'Halloween. En tant que maître de l'épouvante, Jack occupe ses journées à préparer la prochaine fête d'Halloween.",
-          real: "Henry Selick"
+          real: {
+            name: "Henry Selick",
+            nationality: "américain",
+            born: "30 novembre 1952",
+          },
+          genre:"Fantastique, Animation",
         },
         {
           title: "Interstellar",
           year: 2014,
+          language: "Anglais",
           synopsys:
             "Alors que la Terre se meurt, une équipe d'astronautes franchit un trou de ver apparu près de Saturne conduisant à une autre galaxie, cela dans le but d'explorer un nouveau système stellaire et l'espoir de trouver une nouvelle planète habitable par l'humanité afin de la sauver.",
-          real: "Christopher Nolan"
+          real: {
+            name: "Christopher Nolan",
+            nationality: "américain",
+            born: "30 juillet 1970",
+          },
+          genre:"Science fiction, Drame",      
         },
         {
           title: "La Haine",
           year: 1995,
+          language: "Français",
           synopsys:
             "Trois copains d'une banlieue ordinaire traînent leur ennui et leur jeunesse qui se perd. Ils vont vivre la journée la plus importante de leur vie après une nuit d'émeutes provoquée par le passage à tabac d'Abdel Ichah par un inspecteur de police lors d'un interrogatoire.",
-          real: "Mathieu Kassovitz"
+          real: {
+            name: "Mathieu Kassovitz",
+            nationality: "français",
+            born: "3 août 1967",
+          },
+          genre:"Drame", 
         }
       ]
     };
   },
 
   methods: {
-    newmovie1: function() {
-      this.movies.push({ title: "New movie" });
-    },
-    newmovie2: function() {
-      this.movies.push(this.movie_to_add);
-      this.movie_to_add = {};
+    newmovie: function() {
+      //if movie already exist throw error
+      //else{
+      this.movies.push(this.movie_to_add); // replace this.movies with window.shared_data.movies
+      this.movie_to_add = {
+          title: "New movie",
+          year: "?",
+          language: "?",
+          real: {
+            name: "?",
+            nationality: "?",
+            born: "?",
+          },
+          synopsys: "Non disponible",
+          genre:"?"
+      };
     },
 
     edit: function(movie) {
@@ -118,7 +156,12 @@ export default {
     },
     movies_search: function() {
       return this.movies.filter(
-        m => m.title.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+        m => m.title.toLowerCase().indexOf(this.search.toLowerCase()) != -1 
+        || m.real.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+        || m.genre.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+        // || m.year.indexOf(this.search.toLowerCase()) != -1
+        // || m.synopsys.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+
       );
     }
   }
@@ -136,6 +179,7 @@ export default {
 }
 .box {
   border: 3px solid black;
-  margin-left: 15px;
+  margin: 2%;
+  padding: 30px;
 }
 </style>
