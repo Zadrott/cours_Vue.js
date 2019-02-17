@@ -1,47 +1,47 @@
 const express = require("express");
-var path = require('path');
+const path = require("path");
 
 var movies = [
-    {
-      title: "L'étrange noël de M. Jack",
-      year: 1994, //replace with type date ? 
-      language: "Anglais",
-      synopsys:
-        "Jack Skellington, un épouvantail squelettique surnommé « le Roi des citrouilles » (Pumpkin King en version originale), vit dans la ville d'Halloween. En tant que maître de l'épouvante, Jack occupe ses journées à préparer la prochaine fête d'Halloween.",
-      real: {
-        name: "Henry Selick",
-        nationality: "américain",
-        born: "30 novembre 1952",
-      },
-      genre:"Fantastique, Animation",
+  {
+    title: "L'étrange noël de M. Jack",
+    year: 1994, //replace with type date ?
+    language: "Anglais",
+    synopsys:
+      "Jack Skellington, un épouvantail squelettique surnommé « le Roi des citrouilles » (Pumpkin King en version originale), vit dans la ville d'Halloween. En tant que maître de l'épouvante, Jack occupe ses journées à préparer la prochaine fête d'Halloween.",
+    real: {
+      name: "Henry Selick",
+      nationality: "américain",
+      born: "30 novembre 1952",
     },
-    {
-      title: "Interstellar",
-      year: 2014,
-      language: "Anglais",
-      synopsys:
-        "Alors que la Terre se meurt, une équipe d'astronautes franchit un trou de ver apparu près de Saturne conduisant à une autre galaxie, cela dans le but d'explorer un nouveau système stellaire et l'espoir de trouver une nouvelle planète habitable par l'humanité afin de la sauver.",
-      real: {
-        name: "Christopher Nolan",
-        nationality: "américain",
-        born: "30 juillet 1970",
-      },
-      genre:"Science fiction, Drame",      
+    genre: "Fantastique, Animation",
+  },
+  {
+    title: "Interstellar",
+    year: 2014,
+    language: "Anglais",
+    synopsys:
+      "Alors que la Terre se meurt, une équipe d'astronautes franchit un trou de ver apparu près de Saturne conduisant à une autre galaxie, cela dans le but d'explorer un nouveau système stellaire et l'espoir de trouver une nouvelle planète habitable par l'humanité afin de la sauver.",
+    real: {
+      name: "Christopher Nolan",
+      nationality: "américain",
+      born: "30 juillet 1970",
     },
-    {
-      title: "La Haine",
-      year: 1995,
-      language: "Français",
-      synopsys:
-        "Trois copains d'une banlieue ordinaire traînent leur ennui et leur jeunesse qui se perd. Ils vont vivre la journée la plus importante de leur vie après une nuit d'émeutes provoquée par le passage à tabac d'Abdel Ichah par un inspecteur de police lors d'un interrogatoire.",
-      real: {
-        name: "Mathieu Kassovitz",
-        nationality: "français",
-        born: "3 août 1967",
-      },
-      genre:"Drame", 
-    }
-  ];
+    genre: "Science fiction, Drame",
+  },
+  {
+    title: "La Haine",
+    year: 1995,
+    language: "Français",
+    synopsys:
+      "Trois copains d'une banlieue ordinaire traînent leur ennui et leur jeunesse qui se perd. Ils vont vivre la journée la plus importante de leur vie après une nuit d'émeutes provoquée par le passage à tabac d'Abdel Ichah par un inspecteur de police lors d'un interrogatoire.",
+    real: {
+      name: "Mathieu Kassovitz",
+      nationality: "français",
+      born: "3 août 1967",
+    },
+    genre: "Drame",
+  },
+];
 
 const app = express();
 app.use(express.json()); //parse JSON body
@@ -63,7 +63,9 @@ app.use((req, res, next) => {
 });
 
 //GET
-app.get("/", (req, res) =>res.sendFile(path.join(__dirname + '/../index.html')));
+app.get("/", (req, res) =>
+  res.sendFile(path.join(__dirname + "/../index.html"))
+);
 app.get("/api/movies/all", (req, res) => res.send(movies));
 app.get("/api/movies/:id", (req, res) => res.send(movies[req.params.id]));
 
@@ -86,7 +88,7 @@ app.post("/api/movies/:id", (req, res) => {
       : movies[req.params.id].synopsys,
     real: req.body.real ? req.body.real : movies[req.params.id].real,
   };
-  res.send("Movie " +req.params.id + " modified !");
+  res.send("Movie " + req.params.id + " modified !");
 });
 
 app.listen(3000, () => console.log("Node.js app now listening on port 3000!"));

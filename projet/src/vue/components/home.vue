@@ -71,48 +71,8 @@ export default {
           genre:"?",
       },
       search: "",
-      movies: //replace with window.shared_data.movies
-       [
-        {
-          title: "L'étrange noël de M. Jack",
-          year: 1994,
-          language: "Anglais",
-          synopsys:
-            "Jack Skellington, un épouvantail squelettique surnommé « le Roi des citrouilles » (Pumpkin King en version originale), vit dans la ville d'Halloween. En tant que maître de l'épouvante, Jack occupe ses journées à préparer la prochaine fête d'Halloween.",
-          real: {
-            name: "Henry Selick",
-            nationality: "américain",
-            born: "30 novembre 1952",
-          },
-          genre:"Fantastique, Animation",
-        },
-        {
-          title: "Interstellar",
-          year: 2014,
-          language: "Anglais",
-          synopsys:
-            "Alors que la Terre se meurt, une équipe d'astronautes franchit un trou de ver apparu près de Saturne conduisant à une autre galaxie, cela dans le but d'explorer un nouveau système stellaire et l'espoir de trouver une nouvelle planète habitable par l'humanité afin de la sauver.",
-          real: {
-            name: "Christopher Nolan",
-            nationality: "américain",
-            born: "30 juillet 1970",
-          },
-          genre:"Science fiction, Drame",      
-        },
-        {
-          title: "La Haine",
-          year: 1995,
-          language: "Français",
-          synopsys:
-            "Trois copains d'une banlieue ordinaire traînent leur ennui et leur jeunesse qui se perd. Ils vont vivre la journée la plus importante de leur vie après une nuit d'émeutes provoquée par le passage à tabac d'Abdel Ichah par un inspecteur de police lors d'un interrogatoire.",
-          real: {
-            name: "Mathieu Kassovitz",
-            nationality: "français",
-            born: "3 août 1967",
-          },
-          genre:"Drame", 
-        }
-      ]
+      shared_data: window.shared_data,
+      movies: [],
     };
   },
 
@@ -146,16 +106,12 @@ export default {
     }
   },
 
-  created: function() {
-    console.log("Created");
-  },
-
   computed: {
     firstletter: function() {
       return this.message[0];
     },
     movies_search: function() {
-      return this.movies.filter(
+      return this.shared_data.movies.filter(
         m => m.title.toLowerCase().indexOf(this.search.toLowerCase()) != -1 
         || m.real.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1
         || m.genre.toLowerCase().indexOf(this.search.toLowerCase()) != -1
