@@ -29,7 +29,6 @@ export default {
       message: "Welcome to this amazing movie list",
       search: "",
       shared_data: window.shared_data,
-      movies: []
     };
   },
 

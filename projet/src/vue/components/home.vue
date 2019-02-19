@@ -19,7 +19,7 @@ export default {
 
   methods: {
     newmov: () => {
-      console.log(this.shared_data);
+      console.log("Trying to add a new movie");
     }
     // edit: function(movie) {
     //   this.movie_to_edit = movie;

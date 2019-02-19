@@ -7,7 +7,7 @@
         <br>Titre :
         <input type="text" v-model="shared_data.movie_to_add.title">
         <br>Année de sortie :
-        <input type="number" v-model="shared_data.movie_to_add.year">
+        <input type="text" v-model="shared_data.movie_to_add.year">
         <br>Langue:
         <input type="text" v-model="shared_data.movie_to_add.language">
         <br>Réalisateur :
@@ -16,7 +16,7 @@
         <br>* Nationalité:
         <input type="text" v-model="shared_data.movie_to_add.real.nationality">
         <br>* Date de naissance:
-        <input type="date" v-model="shared_data.movie_to_add.real.born">
+        <input type="text" v-model="shared_data.movie_to_add.real.born">
         <br>Genre :
         <input type="text" v-model="shared_data.movie_to_add.genre">
         <br>Synopsys :
@@ -33,32 +33,16 @@
 export default {
   data() {
     return {
-      shared_data: window.shared_data,
+      shared_data: window.shared_data
     };
   },
 
   methods: {
     newmovie: function() {
-      //if movie already exist throw error
-      //else{
-      //   this.movie_to_add..push(this.movie_to_add);
-      window.shared_data.movie_to_add = this.movie_to_add;
-      this.$emit("new");
-      // this.shared_data.movie_to_add = {
-      //   title: "New movie",
-      //   year: "?",
-      //   language: "?",
-      //   real: {
-      //     name: "?",
-      //     nationality: "?",
-      //     born: "?"
-      //   },
-      //   synopsys: "Non disponible",
-      //   genre: "?"
-      // };
-      
+      window.shared_data.movie_to_add = this.shared_data.movie_to_add;
+      this.$emit("newMovieToAdd");
     }
-  }
+  },
 };
 </script>
 

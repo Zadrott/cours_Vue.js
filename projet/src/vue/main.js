@@ -15,17 +15,17 @@ Vue.component("movie-list", MovieList);
 
 window.shared_data = {
   movies: [],
-  movie_to_add:{
-    title: "New movie",
-    year: "?",
-    language: "?",
+  movie_to_add: {
+    title: "Nouveau film",
+    year: "Non renseigné",
+    language: "Non renseigné",
     real: {
-      name: "?",
-      nationality: "?",
-      born: "?"
+      name: "Non renseigné",
+      nationality: "Non renseigné",
+      born: "Non renseigné",
     },
     synopsys: "Non disponible",
-    genre: "?"
+    genre: "Non renseigné",
   },
 };
 
@@ -40,13 +40,11 @@ axios
     console.log(error);
   });
 
+// on newMovie "new" event
 // axios({
 //   method: "post",
 //   url: "/api/movies",
-//   data: {
-//     title: "test",
-//     year: "2000",
-//   },
+//   data: window.shared_data.movie_to_add,
 // })
 //   .then(function(response) {
 //     window.shared_data.movies = response.data;
@@ -71,7 +69,5 @@ new Vue({
   el: "#app",
   render: h => h(app),
   router,
-  data: {
-    shared_data: window.shared_data,
-  },
+  data: {},
 });
