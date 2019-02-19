@@ -2,15 +2,31 @@ import Vue from "vue"; //librairie "vue" dans node_modules
 import VueRouter from "vue-router";
 import app from "./app.vue"; //fichier app.vue local
 import MovieItemComponent from "./components/movieitem.vue";
+import NewMovie from "./components/newMovie.vue";
+import MovieList from "./components/movieList.vue";
 import Editor from "./components/editor.vue";
 import Home from "./components/home.vue";
 const axios = require("axios");
 
 Vue.use(VueRouter);
 Vue.component("movie-item", MovieItemComponent);
+Vue.component("new-movie", NewMovie);
+Vue.component("movie-list", MovieList);
 
 window.shared_data = {
   movies: [],
+  movie_to_add:{
+    title: "New movie",
+    year: "?",
+    language: "?",
+    real: {
+      name: "?",
+      nationality: "?",
+      born: "?"
+    },
+    synopsys: "Non disponible",
+    genre: "?"
+  },
 };
 
 axios
@@ -24,8 +40,22 @@ axios
     console.log(error);
   });
 
-console.log("window.shared_data in main.js:");
-console.log(window.shared_data);
+// axios({
+//   method: "post",
+//   url: "/api/movies",
+//   data: {
+//     title: "test",
+//     year: "2000",
+//   },
+// })
+//   .then(function(response) {
+//     window.shared_data.movies = response.data;
+//     console.log("window.shared_data in main.js (axios):");
+//     console.log(window.shared_data);
+//   })
+//   .catch(function(error) {
+//     console.log(error);
+//   });
 
 const routes = [
   { path: "/", component: Home },

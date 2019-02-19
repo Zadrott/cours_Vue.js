@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Anthony VERGNE <anthony.vergne@outlook.com>",
   "dependencies": {
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.3.3",
     "axios": "^0.18.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.5",
@@ -12,11 +12,11 @@
     "babel-preset-stage-3": "^6.24.1",
     "css-loader": "^2.1.0",
     "file-loader": "^2.0.0",
-    "vue": "^2.6.4",
+    "vue": "^2.6.6",
     "vue-loader": "^15.6.2",
     "vue-router": "^3.0.2",
-    "vue-template-compiler": "^2.6.4",
-    "webpack": "^4.29.3",
+    "vue-template-compiler": "^2.6.6",
+    "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
   }
