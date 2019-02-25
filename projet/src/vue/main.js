@@ -6,55 +6,32 @@ import NewMovie from "./components/newMovie.vue";
 import MovieList from "./components/movieList.vue";
 import Editor from "./components/editor.vue";
 import Home from "./components/home.vue";
-const axios = require("axios");
 
 Vue.use(VueRouter);
 Vue.component("movie-item", MovieItemComponent);
 Vue.component("new-movie", NewMovie);
 Vue.component("movie-list", MovieList);
 
-window.shared_data = {
-  movies: [],
-  movie_to_add: {
-    title: "Nouveau film",
-    year: "Non renseigné",
-    language: "Non renseigné",
-    real: {
-      name: "Non renseigné",
-      nationality: "Non renseigné",
-      born: "Non renseigné",
-    },
-    synopsys: "Non disponible",
-    genre: "Non renseigné",
+var emptyMovie = {
+  title: "Nouveau film",
+  year: "Non renseigné",
+  language: "Non renseigné",
+  real: {
+    name: "Non renseigné",
+    nationality: "Non renseigné",
+    born: "Non renseigné",
   },
+  synopsys: "Non disponible",
+  genre: "Non renseigné",
 };
 
-axios
-  .get("/api/movies/all")
-  .then(function(response) {
-    window.shared_data.movies = response.data;
-    console.log("window.shared_data in main.js (axios):");
-    console.log(window.shared_data);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
+window.shared_data = {
+  movie_to_add: emptyMovie,
+  movies: [],
+};
 
-// on newMovie "new" event
-// axios({
-//   method: "post",
-//   url: "/api/movies",
-//   data: window.shared_data.movie_to_add,
-// })
-//   .then(function(response) {
-//     window.shared_data.movies = response.data;
-//     console.log("window.shared_data in main.js (axios):");
-//     console.log(window.shared_data);
-//   })
-//   .catch(function(error) {
-//     console.log(error);
-//   });
-
+////////////////////////////////////////////////  ==> routes.js : import vueRouter, Home, Editor and MovieItemComponent THEN
+/////////  /!\ Vue.use(VueRouter);  (line:11)
 const routes = [
   { path: "/", component: Home },
   { path: "/edit/:id", component: Editor },
@@ -64,10 +41,10 @@ const routes = [
 const router = new VueRouter({
   routes,
 });
+////////////////////////////////////////////////////////////// ==> import router from "./routes.js";
 
 new Vue({
   el: "#app",
   render: h => h(app),
   router,
-  data: {},
 });

@@ -76,6 +76,7 @@ app.post("/api/movies", (req, res) => {
     year: req.body.year ? req.body.year : 0,
     synopsys: req.body.synopsys ? req.body.synopsys : "You must add a synopsis",
     real: req.body.real ? req.body.real : "Unknown",
+    genre: req.body.genre ? req.body.genre: "Unknown"
   });
   res.send(req.params.id + " added to movies !");
 });

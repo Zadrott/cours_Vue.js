@@ -28,7 +28,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   data() {
@@ -40,9 +39,9 @@ export default {
   methods: {
     newmovie: function() {
       window.shared_data.movie_to_add = this.shared_data.movie_to_add;
-      this.$emit("newMovieToAdd");
+      this.$emit("new");
     }
-  },
+  }
 };
 </script>
 
