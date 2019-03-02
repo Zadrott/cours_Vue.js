@@ -1,8 +1,10 @@
 <template>
   <div class="main">
-    <h1 id="msg">{{message}}</h1>
-    <new-movie class="box"></new-movie>
+    <div id="header">
+      <h1 id="msg">{{message}}</h1>
+    </div>
     <movie-list class="box"></movie-list>
+    <new-movie id="test" class="box"></new-movie>
   </div>
 </template>
 
@@ -17,8 +19,16 @@ export default {
 </script>
 
 <style>
+#header {
+  background-color: aliceblue;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 #msg {
-  color: red;
+  color: rgb(122, 35, 139);
+  align-self: center;
 }
 .main {
   display: flex;
@@ -26,8 +36,10 @@ export default {
   flex-direction: column;
 }
 .box {
-  border: 3px solid black;
+  border: 3px solid aliceblue;
   margin: 2%;
   padding: 30px;
+  opacity: 0.8;
+  background-color: black;
 }
 </style>

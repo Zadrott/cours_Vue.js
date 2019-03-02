@@ -1,5 +1,7 @@
 <template>
-  <router-view></router-view>
+  <div id="container">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
@@ -11,4 +13,10 @@ export default {
 </script>
 
 <style>
+body {
+  background-image: url("../static/vhs_effect.png");
+}
+#container {
+  color: aliceblue;
+}
 </style>
