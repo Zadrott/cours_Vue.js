@@ -11,6 +11,7 @@
     </p>
     <h4>Synopsis</h4>
     <p>{{movie.synopsys}}</p>
+    <button v-on:click="deleteMovie(movies,movie.title)">Delete</button>
   </div>
 </template>
 
@@ -19,8 +20,19 @@ export default {
   props: {
     movie: Object
   },
-  data: function() {
+  data() {
     return {};
+  },
+  computed: {
+    movies() {
+      return this.$store.getters.movieList;
+    }
+  },
+  methods: {
+    deleteMovie: function(movies, title) {
+      var id = movies.map(x => x.title).indexOf(title);
+      this.$store.dispatch("DeleteMovie", id);
+    }
   }
 };
 </script>

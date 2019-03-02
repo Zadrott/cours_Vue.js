@@ -39,10 +39,26 @@ var store = new Vuex.Store({
         });
     },
     AddMovie(context, movie) {
-      console.log("in AddMovie:");
-      apiCalls.NewMovie(movie).then(() => {
-        context.dispatch("UpdateMovies");
-      });
+      apiCalls
+        .NewMovie(movie)
+        .then(() => {
+          context.dispatch("UpdateMovies");
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    DeleteMovie(context, index) {
+      apiCalls
+        .DeleteMovie(index)
+        .then(() => {
+          console.log("Movie deleted");
+          context.dispatch("UpdateMovies");
+          
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     },
   },
 });

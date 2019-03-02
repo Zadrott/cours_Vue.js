@@ -16,4 +16,7 @@ export default {
   NewMovie: movie_to_add => {
     return apiClient.post("/api/movies", movie_to_add);
   },
+  DeleteMovie: index => {
+    return apiClient.post('api/delete/'+ index);
+  }
 };

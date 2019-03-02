@@ -91,5 +91,10 @@ app.post("/api/movies/:id", (req, res) => {
   };
   res.send("Movie " + req.params.id + " modified !");
 });
+app.post("/api/delete/:id", (req, res) => {
+  console.log(req.params.id);
+  movies.splice(req.params.id, 1);
+  res.send(movies);
+});
 
 app.listen(3000, () => console.log("Node.js app now listening on port 3000!"));

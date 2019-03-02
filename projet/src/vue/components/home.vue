@@ -12,7 +12,7 @@
 export default {
   data() {
     return {
-      message: "Welcome to this amazing movie list",
+      message: "Bienvenue sur cette superbe liste de films !",
     };
   },
 };
@@ -25,6 +25,7 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
+  opacity: 0.8;
 }
 #msg {
   color: rgb(122, 35, 139);
