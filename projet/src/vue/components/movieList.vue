@@ -26,21 +26,19 @@
 export default {
   data() {
     return {
-      message: "Welcome to this amazing movie list",
-      search: "",
-      shared_data: window.shared_data,
+      search: ""
     };
   },
 
   methods: {
     edit: function(movie) {
       console.log("nope");
-    },
+    }
   },
 
   computed: {
-    movies_search: function() {
-      return this.shared_data.movies.filter(
+    movies_search() {
+      return this.$store.getters.movieList.filter(
         m =>
           m.title.toLowerCase().indexOf(this.search.toLowerCase()) != -1 ||
           m.real.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1 ||
