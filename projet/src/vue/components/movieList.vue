@@ -14,7 +14,6 @@
           v-for="(movie, index) in movies_search"
           v-bind:key="movie.title"
           v-bind:movie="movie"
-          v-on:edit="edit"
           v-on:remove="remove(index)"
         ></movie-item>
       </ul>

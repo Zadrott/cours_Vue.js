@@ -1,6 +1,7 @@
 <template>
   <div class="movie">
     <h3>{{ movie.title }}</h3>
+    <!-- <img src="movie.affiche" width="250" height="400"> -->
     <p>
       Genre: {{movie.genre}}
       <br>
@@ -11,6 +12,7 @@
     </p>
     <h4>Synopsis</h4>
     <p>{{movie.synopsys}}</p>
+    <router-link :to="{ name: 'editor', params: { id: this.id }}" tag="button">Edit</router-link>
     <button v-on:click="deleteMovie(movies,movie.title)">Delete</button>
   </div>
 </template>
@@ -26,14 +28,24 @@ export default {
   computed: {
     movies() {
       return this.$store.getters.movieList;
+    },
+    // affiche() {
+    //   // var file = new File(this.movie.title, "static/affiches/" + this.movie.title + ".png");
+    //   if (fs.exists("static/affiches/" + this.movie.title + ".png")) {
+    //     return "static/affiches/" + this.movie.title + ".png";
+    //   } else {
+    //     return undefined;
+    //   }
+    // },
+    id() {  
+      return this.movies.map(x => x.title).indexOf(this.movie.title);
     }
   },
   methods: {
-    deleteMovie: function(movies, title) {
-      var id = movies.map(x => x.title).indexOf(title);
-      this.$store.dispatch("DeleteMovie", id);
+    deleteMovie: function() {
+      this.$store.dispatch("DeleteMovie", this.id);
     }
-  }
+  },
 };
 </script>
 

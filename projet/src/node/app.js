@@ -1,5 +1,8 @@
 const express = require("express");
 const path = require("path");
+var multer  = require('multer');
+
+var upload = multer({ dest: '../static/affiches' });
 
 var movies = [
   {
@@ -92,7 +95,6 @@ app.post("/api/movies/:id", (req, res) => {
   res.send("Movie " + req.params.id + " modified !");
 });
 app.post("/api/delete/:id", (req, res) => {
-  console.log(req.params.id);
   movies.splice(req.params.id, 1);
   res.send(movies);
 });

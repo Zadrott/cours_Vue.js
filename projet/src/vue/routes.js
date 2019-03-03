@@ -7,9 +7,9 @@ import Editor from './components/editor.vue';
 Vue.use(VueRouter);
 
 const routes = [
-    { path: "/", component: Home },
-    { path: "/edit/:id", component: Editor },
-    { path: "/movie/:id", component: MovieItemComponent },
+    { path: "/", component: Home , name: "home"},
+    { path: "/edit/:id", component: Editor , name: "editor"},
+    { path: "/movie/:id", component: MovieItemComponent , name: "movie"},
   ];
 
 export default new VueRouter({

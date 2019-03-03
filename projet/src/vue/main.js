@@ -48,13 +48,22 @@ var store = new Vuex.Store({
           console.log(error);
         });
     },
+    EditMovie(context, movie, index) {
+      apiCalls
+        .EditMovie(movie, index)
+        .then(() => {
+          context.dispatch("UpdateMovies");
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
     DeleteMovie(context, index) {
       apiCalls
         .DeleteMovie(index)
         .then(() => {
           console.log("Movie deleted");
           context.dispatch("UpdateMovies");
-          
         })
         .catch(function(error) {
           console.log(error);

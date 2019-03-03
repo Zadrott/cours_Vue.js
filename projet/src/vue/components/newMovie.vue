@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div id="newMovie">
       <h2>Ajouter un nouveau film</h2>
       <div>
@@ -22,10 +21,11 @@
         <br>Synopsys :
         <textarea v-model="movie_to_add.synopsys"></textarea>
         <br>
+        <input type="file" name="poster" />
+        <br>
         <button v-on:click="newmovie">Add</button>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
